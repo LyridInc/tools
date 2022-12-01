@@ -1,0 +1,13 @@
+name: tools
+description: App Description
+ignoreFiles: .git node_modules
+modules:
+- name: puppeteer
+  language: nodejs16.x
+  web: express
+  description: Module description
+  prebuildScript: ./install.sh
+  functions:
+  - name: entry
+    entry: entry.js
+    description: the entry point for the function

@@ -1,0 +1,12 @@
+name: http
+description: App Description
+ignoreFiles: .git
+modules:
+- name: proxy
+  language: go1.x
+  web: gin
+  description: Module description
+  functions:
+  - name: entry
+    entry: entry.go
+    description: the entry point for the function

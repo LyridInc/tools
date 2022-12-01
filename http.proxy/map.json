@@ -1,0 +1,6 @@
+{
+  "proxy_map" : {
+    "localhost:3000": "https://handoyos-awesome-site.webflow.io",
+    "serverpronto.lyrid.io": "https://handoyos-awesome-site.webflow.io"
+  }
+}

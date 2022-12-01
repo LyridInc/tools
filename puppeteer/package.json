@@ -1,0 +1,19 @@
+{
+  "name": "lyrid-node-express-template",
+  "version": "1.0.0",
+  "description": "Puppetter-Chromium based express app service to return screenshot of a webpages",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "puppeteer": "^19.3.0",
+    "sharp": "^0.31.2"
+  }
+}
