@@ -2,9 +2,10 @@ package cache
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
+	"os"
 	"sync"
 	"time"
 )
@@ -38,29 +39,44 @@ func (manager *ProxyMapCache) Init() {
 func (manager *ProxyMapCache) getUpdate() {
 
 	update := make(map[string]string)
-	resp, err := http.Get("https://opensheet.elk.sh/1hD-H-dSvBP4meyZvCnlEeLZJ3rRCeGhO38GBkgMNrlY/map")
-	if err != nil {
-		log.Println(err)
+
+	var raw_map []byte = nil
+
+	if os.Getenv("USE_MAP") == "FILE" {
+		f, err := os.ReadFile(os.Getenv("MAP_FILE"))
+		if err != nil {
+			log.Println(err)
+		} else {
+			raw_map = f
+		}
+	} else if os.Getenv("USE_MAP") == "URL" {
+		resp, err := http.Get(os.Getenv("MAP_URL"))
+		if err != nil {
+			log.Println(err)
+		} else {
+			//We Read the response body on the line below.
+			raw_map, err = io.ReadAll(resp.Body)
+			if err != nil {
+				log.Println(err)
+			}
+		}
 	} else {
-		//We Read the response body on the line below.
-		body, err := ioutil.ReadAll(resp.Body)
+		log.Println("No compatible map")
+	}
+
+	if raw_map != nil {
+		var proxy_map []ProxyMap
+		err := json.Unmarshal(raw_map, &proxy_map)
 
 		if err != nil {
 			log.Println(err)
 		} else {
-			var proxy_map []ProxyMap
-			err = json.Unmarshal(body, &proxy_map)
-
-			if err != nil {
-				log.Println(err)
-			} else {
-				for _, proxyMap := range proxy_map {
-					update[proxyMap.Source] = proxyMap.Target
-				}
-				manager.mu.Lock()
-				manager.Cache = update
-				manager.mu.Unlock()
+			for _, proxyMap := range proxy_map {
+				update[proxyMap.Source] = proxyMap.Target
 			}
+			manager.mu.Lock()
+			manager.Cache = update
+			manager.mu.Unlock()
 		}
 	}
 }

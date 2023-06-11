@@ -1,6 +1,30 @@
-{
-  "proxy_map" : {
-    "localhost:3000": "https://handoyos-awesome-site.webflow.io",
-    "serverpronto.lyrid.io": "https://handoyos-awesome-site.webflow.io"
+[
+  {
+    "source": "localhost:3000",
+    "target": "https://handoyosutanto.wixsite.com/handoyo-dev-shop"
+  },
+  {
+    "source": "serverpronto.lyrid.io",
+    "target": "https://serverpronto.webflow.io"
+  },
+  {
+    "source": "www.cloud-x.us",
+    "target": "https://handoyos-cool-site.webflow.io/"
+  },
+  {
+    "source": "demo.notaryscanner.com",
+    "target": "http://35.93.0.244"
+  },
+  {
+    "source": "taiga.lyrid.io",
+    "target": "http://10.1.18.5:9000"
+  },
+  {
+    "source": "staging.kdynamic.biz",
+    "target": "https://k-dynamic.webflow.io"
+  },
+  {
+    "source": "staging.beautyandcosmo.shop",
+    "target": "https://thieamyint.wixsite.com"
   }
-}
+]
