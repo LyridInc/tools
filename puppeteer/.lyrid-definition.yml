@@ -3,7 +3,7 @@ description: App Description
 ignoreFiles: .git node_modules
 modules:
 - name: puppeteer
-  language: nodejs16.x
+  language: nodejs22.x
   web: express
   description: Module description
   prebuildScript: ./install.sh

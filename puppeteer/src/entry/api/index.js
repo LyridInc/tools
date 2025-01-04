@@ -22,9 +22,13 @@ router.get('/screenshot/:width/:height?', async (req, res, next) => {
             
             buffer = transformer.toFormat('png').toBuffer()
         }
-        
 
-        res.type(`image/png`).status(200).send(buffer)
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': buffer.length
+        });
+
+        res.end(buffer)
     } catch (error) {
         if (error.statusCode === 404) {
             next()

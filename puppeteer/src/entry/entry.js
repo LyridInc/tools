@@ -6,7 +6,7 @@ const app = express();
 const api = require('./api')
 var cors = require('cors')
 var corsOptions = {
-    origin: [ 'https://localhost:3000', 'http://localhost:3000', 'https://app.beta.lyrid.io', 'https://legacy.beta.lyrid.io', 'https://app.lyrid.io' ],
+    origin: [ 'https://localhost:3000', 'http://localhost:3000', 'https://app.staging.lyrid.io', 'https://app.lyrid.io' ],
     credentials: true,
   }
 
